@@ -29,7 +29,7 @@ def run(train_dataset_path, val_dataset_path, on_gpu) -> None:
 
     for epoch in range(num_of_epochs):
 
-        if epoch and not epoch % 20:
+        if epoch and not epoch % 6:
             opt.param_groups[0]['lr'] /= 2
 
         model.train(True)
