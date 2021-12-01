@@ -20,7 +20,7 @@ def run(train_dataset_path, val_dataset_path, on_gpu) -> None:
 
     device = 'cuda' if on_gpu else 'cpu'
 
-    model = resnet18(pretrained=False)
+    model = resnet18(pretrained=False, progress=True)
     model.fc = nn.Linear(512, 200)
     model = model.to(device)
     opt = torch.optim.Adam(model.parameters())
@@ -39,14 +39,14 @@ def run(train_dataset_path, val_dataset_path, on_gpu) -> None:
             loss = F.cross_entropy(y_pred, y)
 
             if not i % 100:
-                print(loss.to('cpu').data.numpy(), end=" ")
+                print(loss.to('cpu').data.numpy(), end=" ", flush=True)
 
             loss.backward()
             opt.step()
             opt.zero_grad()
 
         model.train(False)
-        with torch.no_grad:
+        with torch.no_grad():
             res = 0
             for x, y in testloader:
                 x, y = x.to(device), y.to(device)
