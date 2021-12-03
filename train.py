@@ -24,7 +24,7 @@ def validation_step(model, x, y, device):
 
 
 def train(config, trainset, testset, device):
-    trainloader = torch.utils.data.DataLoader(trainset, batch_size=config['train_bachsize'], shuffle=True, num_workers=0)
+    trainloader = torch.utils.data.DataLoader(trainset, batch_size=config['train_batchsize'], shuffle=True, num_workers=0)
     testloader = torch.utils.data.DataLoader(testset, batch_size=config['test_batchsize'], shuffle=False, num_workers=0)
     test_size = len(testset)
 
