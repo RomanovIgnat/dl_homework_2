@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 from Dataset import CustomDataset
-from torchvision.models import resnet18
+from torchvision.models import vgg16_bn
 
 
 @click.command()
@@ -20,8 +20,7 @@ def run(train_dataset_path, val_dataset_path, on_gpu) -> None:
 
     device = 'cuda' if on_gpu else 'cpu'
 
-    model = resnet18(pretrained=False, progress=True)
-    model.fc = nn.Linear(512, 200)
+    model = vgg16_bn(pretrained=False, progress=True, num_classes=200)
     model = model.to(device)
     opt = torch.optim.Adam(model.parameters())
 
@@ -29,7 +28,7 @@ def run(train_dataset_path, val_dataset_path, on_gpu) -> None:
 
     for epoch in range(num_of_epochs):
 
-        if epoch and not epoch % 6:
+        if epoch and not epoch % 8:
             opt.param_groups[0]['lr'] /= 2
 
         model.train(True)
