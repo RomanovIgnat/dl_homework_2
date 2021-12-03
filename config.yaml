@@ -1,0 +1,4 @@
+train_batchsize: 100
+test_batchsize: 500
+num_of_epochs: 100
+change_lr_step: 8
