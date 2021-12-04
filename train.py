@@ -46,6 +46,6 @@ def train(config, trainset, testset, device):
             for x, y in testloader:
                 res += validation_step(model, x, y, device)
 
-            print("acc: ", res / test_size)
+            print("acc:", res / test_size)
 
 

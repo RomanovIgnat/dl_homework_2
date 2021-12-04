@@ -6,7 +6,8 @@ from torchvision import transforms
 
 TRANSFORMS = transforms.Compose([
     transforms.ToTensor(),
-    transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+    transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5]),
+    transforms.AutoAugment(transforms.AutoAugmentPolicy.IMAGENET),
 ])
 
 
