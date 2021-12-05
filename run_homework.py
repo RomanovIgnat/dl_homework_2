@@ -11,7 +11,7 @@ from train import train
 @click.option('--on_gpu', is_flag=True)
 def run(train_dataset_path, val_dataset_path, on_gpu) -> None:
     trainset = CustomDataset(train_dataset_path)
-    testset = CustomDataset(val_dataset_path)
+    testset = CustomDataset(val_dataset_path, test=True)
 
     device = 'cuda' if on_gpu else 'cpu'
 
